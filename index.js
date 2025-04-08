@@ -43,7 +43,7 @@ app.use('/upload', express.static('./upload'));
 app.use(require('./src/middlewares/authentication'));
 
 // Run Logger:
-app.use(require('./src/middlewares/logger'));
+// app.use(require('./src/middlewares/logger'));
 
 // res.getModelList():
 app.use(require('./src/middlewares/queryHandler'));
@@ -59,16 +59,10 @@ app.all('/', (req, res) => {
 // Routes:
 app.use('/api/v1', require('./src/routes'));
 
-// Node Found
-app.use('*', (req, res) => {
-    res.status(404).json({
-        error: true,
-        message: 'Route is not found',
-        method: req.method,
-        url: req.url,
-    })
+// to avoid hard refresh error
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/client/dist/index.html'));
 });
-
 /* ------------------------------------------------------- */
 
 // errorHandler:
@@ -79,4 +73,4 @@ app.listen(PORT, HOST, () => console.log(`http://${HOST}:${PORT}`))
 
 /* ------------------------------------------------------- */
 // Syncronization (must be in commentLine):
-// require('./src/helpers/sync')() // !!! It clear database.
+//require('./src/helpers/sync')() // !!! It clear database.
