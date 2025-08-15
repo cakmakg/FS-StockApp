@@ -181,6 +181,28 @@
             "description": "OK"
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create User",
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/api/v1/users/{id}": {
@@ -1568,7 +1590,7 @@
             }
           }
         },
-        "priceTotal": {
+        "amount": {
           "type": "object",
           "properties": {
             "type": {
@@ -1662,7 +1684,7 @@
             }
           }
         },
-        "priceTotal": {
+        "amount": {
           "type": "object",
           "properties": {
             "type": {
